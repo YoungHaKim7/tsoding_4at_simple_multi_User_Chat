@@ -1,16 +1,15 @@
-use std::{
-    io::{stdout, Write},
-    thread,
-    time::Duration,
-};
+use std::io::{stdout, Write};
 
-use crossterm::{cursor, terminal, QueueableCommand};
+use crossterm::{
+    cursor,
+    terminal::{Clear, ClearType},
+    QueueableCommand,
+};
 
 fn main() {
     println!("Hello Client");
     let mut stdout = stdout();
-    // stdout.queue(terminal::Clear(terminal::ClearType::All));
+    let _ = stdout.queue(Clear(ClearType::All));
     stdout.queue(cursor::MoveTo(5, 5)).unwrap();
     stdout.flush().unwrap();
-    thread::sleep(Duration::from_secs(5));
 }
