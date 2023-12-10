@@ -29,12 +29,10 @@ fn main() {
         }
         stdout().queue(Clear(ClearType::All)).unwrap();
     }
-    println!("Hello from Client");
-    let mut stdout = stdout();
-    let (width, height) = terminal::size().unwrap();
-    let _ = stdout.queue(Clear(ClearType::All));
-    let _ = stdout.queue(MoveTo(width / 2, height / 2));
-    let _ = stdout.write("wrmom".as_bytes()).unwrap();
-    stdout.flush().unwrap();
+
+    let label = b"urmom";
+    stdout().queue(MoveTo(w / 2 - label.len() as u16 / 2, h / 2));
+    stdout().write(label).unwrap();
+    stdout().flush().unwrap();
     thread::sleep(Duration::from_secs(3));
 }
