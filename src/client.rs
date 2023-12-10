@@ -6,11 +6,28 @@ use std::{
 
 use crossterm::{
     cursor::{self, MoveTo},
+    event::{poll, read, Event},
     terminal::{self, Clear, ClearType},
     QueueableCommand,
 };
 
 fn main() {
+    let (mut w, mut h) = terminal::size().unwrap();
+    loop {
+        while poll(Duration::ZERO).unwrap() {
+            match read().unwrap() {
+                Event::Resize(nw, nh) => {
+                    w = nw;
+                    h = nh;
+                }
+                Event::Key(evet) => todo!(),
+                Event::FocusGained => todo!(),
+                Event::FocusLost => todo!(),
+                Event::Mouse(_) => todo!(),
+                Event::Paste(_) => todo!(),
+            }
+        }
+    }
     println!("Hello from Client");
     let mut stdout = stdout();
     let (width, height) = terminal::size().unwrap();
