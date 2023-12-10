@@ -12,7 +12,9 @@ use crossterm::{
 };
 
 fn main() {
+    let mut stdout = stdout();
     let (mut w, mut h) = terminal::size().unwrap();
+    let mut bar = " ".repeat(w.into());
     loop {
         while poll(Duration::ZERO).unwrap() {
             match read().unwrap() {
@@ -27,13 +29,18 @@ fn main() {
                 Event::Paste(_) => todo!(),
             }
         }
-        stdout().queue(Clear(ClearType::All)).unwrap();
-        stdout().queue(MoveTo(0, h - 2)).unwrap();
+        stdout.queue(Clear(ClearType::All)).unwrap();
+        stdout.queue(MoveTo(0, h - 2)).unwrap();
+        stdout.write(bar.as_bytes()).unwrap();
+        stdout.queue(MoveTo(0, h - 1)).unwrap();
+        stdout.flush().unwrap();
+        thread::sleep(Duration::from_millis(5));
     }
 
     let label = b"urmom";
-    stdout().queue(MoveTo(w / 2 - label.len() as u16 / 2, h / 2));
-    stdout().write(label).unwrap();
-    stdout().flush().unwrap();
-    thread::sleep(Duration::from_secs(3));
+    stdout
+        .queue(MoveTo(w / 2 - label.len() as u16 / 2, h / 2))
+        .unwrap();
+    stdout.write(label).unwrap();
+    stdout.flush().unwrap();
 }
