@@ -1,10 +1,10 @@
-use std::io::{stdout, Error};
+use std::{io::stdout, thread, time::Duration};
 
 use crossterm::{cursor, QueueableCommand};
 
-fn main() -> Result<(), Error> {
+fn main() {
     println!("Hello Client");
     let mut stdout = stdout();
-    stdout.queue(cursor::MoveTo(5, 5));
-    Ok(())
+    stdout.queue(cursor::MoveTo(5, 5)).unwrap();
+    thread::sleep(Duration::from_secs(5));
 }
