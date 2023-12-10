@@ -12,5 +12,6 @@ fn main() {
     let (width, height) = terminal::size().unwrap();
     let _ = stdout.queue(Clear(ClearType::All));
     let _ = stdout.queue(MoveTo(width / 2, height / 2));
+    let _ = stdout.write(b"wrmom");
     stdout.flush().unwrap();
 }
