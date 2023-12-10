@@ -1,3 +1,5 @@
+- 14:03 부터 보면 됨 
+
 # tsoding_4at_simple_multi_User_Chat
 Simple Multi-User Chat
 
