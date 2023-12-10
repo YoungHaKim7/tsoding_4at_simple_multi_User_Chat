@@ -28,6 +28,7 @@ fn main() {
             }
         }
         stdout().queue(Clear(ClearType::All)).unwrap();
+        stdout().queue(MoveTo(0, h - 2)).unwrap();
     }
 
     let label = b"urmom";
