@@ -27,6 +27,7 @@ fn main() {
                 Event::Paste(_) => todo!(),
             }
         }
+        stdout().queue(Clear(ClearType::All)).unwrap();
     }
     println!("Hello from Client");
     let mut stdout = stdout();
