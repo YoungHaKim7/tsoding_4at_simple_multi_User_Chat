@@ -85,7 +85,12 @@ fn main() {
         stdout.write(bar.as_bytes()).unwrap();
 
         stdout.queue(MoveTo(0, h - 1)).unwrap();
-        stdout.write(prompt.as_bytes()).unwrap();
+        {
+            let bytes = prompt.as_bytes();
+            stdout
+                .write(bytes.get(0..w as usize).unwrap_or(bytes))
+                .unwrap();
+        }
 
         stdout.flush().unwrap();
 
