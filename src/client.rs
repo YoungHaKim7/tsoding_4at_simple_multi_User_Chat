@@ -11,6 +11,25 @@ use crossterm::{
     QueueableCommand,
 };
 
+struct Rect {
+    x: u16,
+    y: u16,
+    w: u16,
+    h: u16,
+}
+
+fn chat_window(stdout: &mut impl Write, boundary: Rect, chat: &[String]) {
+    let n = chat.len();
+    let m = n.checked_sub(boundary.h as usize).unwrap_or(0);
+
+    for (dy, line) in chat.iter().skip(m).enumerate() {
+        stdout
+            .queue(MoveTo(boundary.x, boundary.y + dy as u16))
+            .unwrap();
+        stdout.write(line.as_bytes()).unwrap();
+    }
+}
+
 fn main() {
     let mut stdout = stdout();
     terminal::enable_raw_mode().unwrap();
@@ -63,4 +82,6 @@ fn main() {
 
         thread::sleep(Duration::from_millis(33));
     }
+
+    terminal::disable_raw_mode().unwrap();
 }

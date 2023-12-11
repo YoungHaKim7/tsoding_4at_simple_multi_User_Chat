@@ -100,7 +100,8 @@ pub const API_KEY: &str = include_str!(r"../../key.txt");
 
 - https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/cb1f4e11afe563e2adcc3d5ac109794d5aab7c81#diff-7f93c4e263c4e9ec748f804c7fd04a3b2fde86ffd741fb5516d67e1097bae4c1
 
--
+- Chat & Print (Client)
+ - https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/571a31280de947be62463427f22ac5ebc2a53656 
 
 - type char https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/3f35ac10fba94628a7ee08658fd49eba28d5da2c
 
