@@ -80,8 +80,21 @@ tsoding_4at_simple_multi_User_Chat v0.1.0 (/home/gy/my_project/rust/111222/tsodi
 # Issues
 
 - WindowsOS 글씨 2번 입력되는거 해결하기 https://github.com/microsoft/terminal/issues/8440
+  - https://github.com/crossterm-rs/crossterm/issues/772
 
 - https://github.com/crossterm-rs/crossterm/issues/171 
+
+- OS별 코드 따로 만들기
+```rs
+#[cfg(target_os = "windows")]
+pub const API_KEY: &str = include_str!("..\\..\\key.txt");
+
+#[cfg(target_os = "macos")]
+pub const API_KEY: &str = include_str!(r"../../key.txt");
+
+#[cfg(target_os = "linux")]
+pub const API_KEY: &str = include_str!(r"../../key.txt");
+```
 
 # Let's go
 
