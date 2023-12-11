@@ -77,6 +77,11 @@ tsoding_4at_simple_multi_User_Chat v0.1.0 (/home/gy/my_project/rust/111222/tsodi
         └── signal-hook v0.3.17 (*)
 
 ```
+# Issues
+
+- WindowsOS 글씨 2번 입력되는거 해결하기 https://github.com/microsoft/terminal/issues/8440
+
+- https://github.com/crossterm-rs/crossterm/issues/171 
 
 # Let's go
 

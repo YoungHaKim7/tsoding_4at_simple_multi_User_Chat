@@ -6,12 +6,22 @@ use std::{
 
 use crossterm::{
     cursor::{self, MoveTo},
-    event::{self, poll, read, Event, KeyCode},
+    event::{
+        self, poll, read, Event, KeyCode, KeyboardEnhancementFlags, PopKeyboardEnhancementFlags,
+        PushKeyboardEnhancementFlags,
+    },
+    execute,
     terminal::{self, Clear, ClearType},
     QueueableCommand,
 };
 
 fn main() {
+    execute!(
+        stdout(),
+        PushKeyboardEnhancementFlags(KeyboardEnhancementFlags::DISAMBIGUATE_ESCAPE_CODES)
+    );
+
+    execute!(stdout(), PopKeyboardEnhancementFlags);
     let mut stdout = stdout();
     terminal::enable_raw_mode().unwrap();
     let (mut w, mut h) = terminal::size().unwrap();
