@@ -12,6 +12,9 @@ Simple Multi-User Chat
   - Github
     - https://github.com/tsoding/4at
 
+# Box-Drawing Character
+
+https://en.wikipedia.org/wiki/Box-drawing_character
 
 # Result
 
