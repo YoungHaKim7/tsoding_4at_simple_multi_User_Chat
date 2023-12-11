@@ -17,7 +17,7 @@ use crossterm::{
 
 fn main() {
     let mut stdout = stdout();
-    terminal::enable_raw_mode().unwrap();
+    // terminal::enable_raw_mode().unwrap();
     let (mut w, mut h) = terminal::size().unwrap();
     let bar_char = "═";
     let mut bar = bar_char.repeat(w as usize);
@@ -31,25 +31,24 @@ fn main() {
                     bar = bar_char.repeat(w as usize);
                 }
 
-                #[cfg(target_os = "windows")]
+                // #[cfg(target_os = "windows")]
+                // Event::Key(event) => match event.code {
+                //     KeyCode::Char(x) => {
+                //         prompt.push(x);
+                //         let len_check_prompt = prompt.len();
+                //         if len_check_prompt == 2 {
+                //             prompt.pop();
+                //         } else {
+                //             prompt.pop();
+                //         }
+                //     }
+                //     _ => {}
+                // },
                 Event::Key(event) => match event.code {
-                    KeyCode::Char(x) => {
-                        prompt.push(x);
-                        let len_check_prompt = prompt.len();
-                        if len_check_prompt == 2 {
-                            prompt.pop();
-                        } else {
-                            prompt.pop();
-                        }
-                    }
+                    KeyCode::Char(x) => prompt.push(x),
                     _ => {}
                 },
-                _ => {} // #[cfg(target_os = "linux")]
-                        // Event::Key(event) => match event.code {
-                        //     KeyCode::Char(x) => prompt.push(x),
-                        //     _ => {}
-                        // },
-                        // _ => {}
+                _ => {}
             }
         }
 
