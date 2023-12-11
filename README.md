@@ -103,3 +103,12 @@ pub const API_KEY: &str = include_str!(r"../../key.txt");
 -
 
 - type char https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/3f35ac10fba94628a7ee08658fd49eba28d5da2c
+
+
+# crossterim Tutorial
+
+- Lets build snake with rust https://blog.scottlogic.com/2020/10/08/lets-build-snake-with-rust.html
+
+# crossterm Examples
+
+- https://github.com/crossterm-rs/crossterm/blob/master/examples/event-poll-read.rs

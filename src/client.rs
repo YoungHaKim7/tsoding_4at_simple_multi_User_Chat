@@ -8,7 +8,7 @@ use crossterm::{
     cursor::{self, MoveTo},
     event::{
         self, poll, read, Event, KeyCode, KeyboardEnhancementFlags, PopKeyboardEnhancementFlags,
-        PushKeyboardEnhancementFlags,
+        PushKeyboardEnhancementFlags, KeyEventKind,
     },
     execute,
     terminal::{self, Clear, ClearType},
@@ -49,6 +49,7 @@ fn main() {
                     _ => {}
                 },
                 _ => {}
+                KeyEventKind::Release;
             }
         }
 
