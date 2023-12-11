@@ -18,7 +18,7 @@ struct Rect {
     h: u16,
 }
 
-fn chat_window(stdout: &mut impl Write, boundary: Rect, chat: &[String]) {
+fn chat_window(stdout: &mut impl Write, chat: &[String], boundary: Rect) {
     let n = chat.len();
     let m = n.checked_sub(boundary.h as usize).unwrap_or(0);
 
@@ -67,10 +67,16 @@ fn main() {
 
         stdout.queue(Clear(ClearType::All)).unwrap();
 
-        for (row, line) in chat.iter().enumerate() {
-            stdout.queue(MoveTo(0, row as u16)).unwrap();
-            stdout.write(line.as_bytes()).unwrap();
-        }
+        chat_window(
+            &mut stdout,
+            &chat,
+            Rect {
+                x: 0,
+                y: 0,
+                w: 0,
+                h: h - 2,
+            },
+        );
 
         stdout.queue(MoveTo(0, h - 2)).unwrap();
         stdout.write(bar.as_bytes()).unwrap();
