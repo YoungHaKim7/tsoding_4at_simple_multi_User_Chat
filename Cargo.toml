@@ -13,5 +13,13 @@ path = "./src/server.rs"
 name = "client"
 path = "./src/client.rs"
 
+[[bin]]
+name = "event-read"
+path = "./src/event-read.rs"
+
+[[bin]]
+name = "event-read-char-line"
+path = "./src/event-read-char-line.rs"
+
 [dependencies]
 crossterm = "0.27.0"
