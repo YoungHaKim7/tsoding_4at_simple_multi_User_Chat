@@ -14,19 +14,20 @@ use crossterm::{
 fn main() {
     let mut stdout = stdout();
     let (mut w, mut h) = terminal::size().unwrap();
-    let mut bar = " ".repeat(w.into());
+    let mut bar = " ".repeat(w as usize);
     loop {
         while poll(Duration::ZERO).unwrap() {
             match read().unwrap() {
                 Event::Resize(nw, nh) => {
                     w = nw;
                     h = nh;
+                    bar = " ".repeat(w as usize);
                 }
-                Event::Key(evet) => todo!(),
-                Event::FocusGained => todo!(),
-                Event::FocusLost => todo!(),
-                Event::Mouse(_) => todo!(),
-                Event::Paste(_) => todo!(),
+                Event::Key(_event) => {}
+                Event::FocusGained => {}
+                Event::FocusLost => {}
+                Event::Mouse(_) => {}
+                Event::Paste(_) => {}
             }
         }
         stdout.queue(Clear(ClearType::All)).unwrap();
