@@ -4,6 +4,9 @@
 
 - https://docs.rs/crossterm/latest/crossterm/
 
+- KeyEvent
+ - https://docs.rs/crossterm/latest/crossterm/event/enum.KeyCode.html
+
 # tsoding_4at_simple_multi_User_Chat
 Simple Multi-User Chat
 

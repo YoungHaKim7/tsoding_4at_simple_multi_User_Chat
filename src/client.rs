@@ -6,7 +6,7 @@ use std::{
 
 use crossterm::{
     cursor::{self, MoveTo},
-    event::{poll, read, Event},
+    event::{self, poll, read, Event, KeyCode},
     terminal::{self, Clear, ClearType},
     QueueableCommand,
 };
@@ -16,6 +16,7 @@ fn main() {
     let (mut w, mut h) = terminal::size().unwrap();
     let bar_char = "═";
     let mut bar = bar_char.repeat(w as usize);
+    let mut prompt = String::new();
     loop {
         while poll(Duration::ZERO).unwrap() {
             match read().unwrap() {
@@ -24,18 +25,24 @@ fn main() {
                     h = nh;
                     bar = bar_char.repeat(w as usize);
                 }
-                Event::Key(_event) => {}
-                Event::FocusGained => {}
-                Event::FocusLost => {}
-                Event::Mouse(_) => {}
-                Event::Paste(_) => {}
+                Event::Key(event) => match event.code {
+                    KeyCode::Char(x) => prompt.push(x),
+                    _ => {}
+                },
+                _ => {}
             }
         }
+
         stdout.queue(Clear(ClearType::All)).unwrap();
+
         stdout.queue(MoveTo(0, h - 2)).unwrap();
         stdout.write(bar.as_bytes()).unwrap();
+
         stdout.queue(MoveTo(0, h - 1)).unwrap();
+        stdout.write(prompt.as_bytes()).unwrap();
+
         stdout.flush().unwrap();
+
         thread::sleep(Duration::from_millis(5));
     }
 
