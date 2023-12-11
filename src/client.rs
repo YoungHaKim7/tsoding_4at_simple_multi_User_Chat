@@ -13,6 +13,7 @@ use crossterm::{
 
 fn main() {
     let mut stdout = stdout();
+    terminal::enable_raw_mode().unwrap();
     let (mut w, mut h) = terminal::size().unwrap();
     let bar_char = "═";
     let mut bar = bar_char.repeat(w as usize);
