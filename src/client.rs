@@ -50,6 +50,7 @@ fn main() {
                     h = nh;
                     bar = bar_char.repeat(w as usize);
                 }
+                Event::Paste(data) => prompt.push_str(&data),
                 Event::Key(event) => match event.code {
                     KeyCode::Char(x) => {
                         if x == 'c' && event.modifiers.contains(KeyModifiers::CONTROL) {
