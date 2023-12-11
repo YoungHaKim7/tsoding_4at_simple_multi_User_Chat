@@ -5,12 +5,8 @@ use std::{
 };
 
 use crossterm::{
-    cursor::{self, MoveTo},
-    event::{
-        self, poll, read, Event, KeyCode, KeyEventKind, KeyModifiers, KeyboardEnhancementFlags,
-        PopKeyboardEnhancementFlags, PushKeyboardEnhancementFlags,
-    },
-    execute,
+    cursor::MoveTo,
+    event::{poll, read, Event, KeyCode, KeyModifiers},
     terminal::{self, Clear, ClearType},
     QueueableCommand,
 };
@@ -21,8 +17,9 @@ fn main() {
     let (mut w, mut h) = terminal::size().unwrap();
     let bar_char = "═";
     let mut bar = bar_char.repeat(w as usize);
-    let mut prompt = String::new();
     let mut quit = false;
+    let mut prompt = String::new();
+    let mut chat = Vec::new();
     while !quit {
         while poll(Duration::ZERO).unwrap() {
             match read().unwrap() {
@@ -39,6 +36,10 @@ fn main() {
                             prompt.push(x)
                         }
                     }
+                    KeyCode::Enter => {
+                        chat.push(prompt.clone());
+                        prompt.clear();
+                    }
                     _ => {}
                 },
                 _ => {}
@@ -46,6 +47,11 @@ fn main() {
         }
 
         stdout.queue(Clear(ClearType::All)).unwrap();
+
+        for (row, line) in chat.iter().enumerate() {
+            stdout.queue(MoveTo(0, row as u16)).unwrap();
+            stdout.write(line.as_bytes()).unwrap();
+        }
 
         stdout.queue(MoveTo(0, h - 2)).unwrap();
         stdout.write(bar.as_bytes()).unwrap();
@@ -55,13 +61,6 @@ fn main() {
 
         stdout.flush().unwrap();
 
-        thread::sleep(Duration::from_millis(5));
+        thread::sleep(Duration::from_millis(33));
     }
-
-    let label = b"urmom";
-    stdout
-        .queue(MoveTo(w / 2 - label.len() as u16 / 2, h / 2))
-        .unwrap();
-    stdout.write(label).unwrap();
-    stdout.flush().unwrap();
 }
