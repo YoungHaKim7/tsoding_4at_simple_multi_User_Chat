@@ -107,6 +107,8 @@ pub const API_KEY: &str = include_str!(r"../../key.txt");
 
 - type char https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/3f35ac10fba94628a7ee08658fd49eba28d5da2c
 
+- Usize https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/8d63669d43aa73de2278aec883b89303c9cbe6bd 
+
 
 # crossterim Tutorial
 
