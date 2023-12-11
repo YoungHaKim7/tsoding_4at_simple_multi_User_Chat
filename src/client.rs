@@ -14,14 +14,15 @@ use crossterm::{
 fn main() {
     let mut stdout = stdout();
     let (mut w, mut h) = terminal::size().unwrap();
-    let mut bar = "═".repeat(w as usize);
+    let bar_char = "═";
+    let mut bar = bar_char.repeat(w as usize);
     loop {
         while poll(Duration::ZERO).unwrap() {
             match read().unwrap() {
                 Event::Resize(nw, nh) => {
                     w = nw;
                     h = nh;
-                    bar = "═".repeat(w as usize);
+                    bar = bar_char.repeat(w as usize);
                 }
                 Event::Key(_event) => {}
                 Event::FocusGained => {}
