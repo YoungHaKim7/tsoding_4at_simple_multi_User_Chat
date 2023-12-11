@@ -7,8 +7,8 @@ use std::{
 use crossterm::{
     cursor::{self, MoveTo},
     event::{
-        self, poll, read, Event, KeyCode, KeyboardEnhancementFlags, PopKeyboardEnhancementFlags,
-        PushKeyboardEnhancementFlags, KeyEventKind,
+        self, poll, read, Event, KeyCode, KeyEventKind, KeyModifiers, KeyboardEnhancementFlags,
+        PopKeyboardEnhancementFlags, PushKeyboardEnhancementFlags,
     },
     execute,
     terminal::{self, Clear, ClearType},
@@ -17,12 +17,13 @@ use crossterm::{
 
 fn main() {
     let mut stdout = stdout();
-    // terminal::enable_raw_mode().unwrap();
+    terminal::enable_raw_mode().unwrap();
     let (mut w, mut h) = terminal::size().unwrap();
     let bar_char = "═";
     let mut bar = bar_char.repeat(w as usize);
     let mut prompt = String::new();
-    loop {
+    let mut quit = false;
+    while !quit {
         while poll(Duration::ZERO).unwrap() {
             match read().unwrap() {
                 Event::Resize(nw, nh) => {
@@ -30,26 +31,17 @@ fn main() {
                     h = nh;
                     bar = bar_char.repeat(w as usize);
                 }
-
-                // #[cfg(target_os = "windows")]
-                // Event::Key(event) => match event.code {
-                //     KeyCode::Char(x) => {
-                //         prompt.push(x);
-                //         let len_check_prompt = prompt.len();
-                //         if len_check_prompt == 2 {
-                //             prompt.pop();
-                //         } else {
-                //             prompt.pop();
-                //         }
-                //     }
-                //     _ => {}
-                // },
                 Event::Key(event) => match event.code {
-                    KeyCode::Char(x) => prompt.push(x),
+                    KeyCode::Char(x) => {
+                        if x == 'c' && event.modifiers.contains(KeyModifiers::CONTROL) {
+                            quit = true;
+                        } else {
+                            prompt.push(x)
+                        }
+                    }
                     _ => {}
                 },
                 _ => {}
-                KeyEventKind::Release;
             }
         }
 
