@@ -1,6 +1,6 @@
 use std::{
-    io::{stdout, Write},
-    thread,
+    io::{stdout, ErrorKind, Read, Write},
+    str, thread,
     time::Duration,
 };
 
@@ -10,6 +10,8 @@ use crossterm::{
     terminal::{self, Clear, ClearType},
     QueueableCommand,
 };
+
+use std::net::TcpStream;
 
 struct Rect {
     x: usize,
@@ -34,6 +36,9 @@ fn chat_window(stdout: &mut impl Write, chat: &[String], boundary: Rect) {
 }
 
 fn main() {
+    let mut stream = TcpStream::connect("127.0.0.1:6969").unwrap();
+    let _ = stream.set_nonblocking(true).unwrap();
+
     let mut stdout = stdout();
     terminal::enable_raw_mode().unwrap();
     let (mut w, mut h) = terminal::size().unwrap();
@@ -42,6 +47,7 @@ fn main() {
     let mut quit = false;
     let mut prompt = String::new();
     let mut chat = Vec::new();
+    let mut buf = [0; 64];
     while !quit {
         while poll(Duration::ZERO).unwrap() {
             match read().unwrap() {
@@ -60,12 +66,22 @@ fn main() {
                         }
                     }
                     KeyCode::Enter => {
+                        stream.write(prompt.as_bytes()).unwrap();
                         chat.push(prompt.clone());
                         prompt.clear();
                     }
                     _ => {}
                 },
                 _ => {}
+            }
+        }
+
+        match stream.read(&mut buf) {
+            Ok(n) => chat.push(str::from_utf8(&buf[0..n]).unwrap().to_string()),
+            Err(err) => {
+                if err.kind() != ErrorKind::WouldBlock {
+                    panic!("{err}");
+                }
             }
         }
 

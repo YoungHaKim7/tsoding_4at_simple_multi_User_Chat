@@ -7,6 +7,9 @@
 - KeyEvent
  - https://docs.rs/crossterm/latest/crossterm/event/enum.KeyCode.html
 
+- TcpStream::connect https://doc.rust-lang.org/stable/std/net/struct.TcpStream.html 
+  - https://doc.rust-lang.org/stable/std/net/struct.TcpStream.html#method.connect
+
 # tsoding_4at_simple_multi_User_Chat
 Simple Multi-User Chat
 
