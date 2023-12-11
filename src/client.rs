@@ -12,21 +12,24 @@ use crossterm::{
 };
 
 struct Rect {
-    x: u16,
-    y: u16,
-    w: u16,
-    h: u16,
+    x: usize,
+    y: usize,
+    w: usize,
+    h: usize,
 }
 
 fn chat_window(stdout: &mut impl Write, chat: &[String], boundary: Rect) {
     let n = chat.len();
-    let m = n.checked_sub(boundary.h as usize).unwrap_or(0);
+    let m = n.checked_sub(boundary.h).unwrap_or(0);
 
     for (dy, line) in chat.iter().skip(m).enumerate() {
         stdout
-            .queue(MoveTo(boundary.x, boundary.y + dy as u16))
+            .queue(MoveTo(boundary.x as u16, (boundary.y + dy) as u16))
             .unwrap();
-        stdout.write(line.as_bytes()).unwrap();
+        let bytes = line.as_bytes();
+        stdout
+            .write(bytes.get(0..boundary.w).unwrap_or(bytes))
+            .unwrap();
     }
 }
 
@@ -73,8 +76,8 @@ fn main() {
             Rect {
                 x: 0,
                 y: 0,
-                w,
-                h: h - 2,
+                w: w as usize,
+                h: h as usize - 2,
             },
         );
 
