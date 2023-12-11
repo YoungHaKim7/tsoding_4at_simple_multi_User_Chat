@@ -1,4 +1,4 @@
-- 58:59 부터 보면 됨 
+- 1:18:10 부터 보면 됨 
 
 # Crossterm (docs.rs)
 
@@ -102,6 +102,8 @@ pub const API_KEY: &str = include_str!(r"../../key.txt");
 
 - Chat & Print (Client)
  - https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/571a31280de947be62463427f22ac5ebc2a53656 
+
+- https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/9a8714ae85c6f25f69382d1aca729e3dac0eb2cc 
 
 - type char https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/3f35ac10fba94628a7ee08658fd49eba28d5da2c
 
