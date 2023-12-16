@@ -1,5 +1,3 @@
-- 1:38:47 부터 보면 됨 
-
 # Crossterm (docs.rs)
 
 - https://docs.rs/crossterm/latest/crossterm/
@@ -122,3 +120,20 @@ pub const API_KEY: &str = include_str!(r"../../key.txt");
 # crossterm Examples
 
 - https://github.com/crossterm-rs/crossterm/blob/master/examples/event-poll-read.rs
+
+# 방송 순서 
+- https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/cb1f4e11afe563e2adcc3d5ac109794d5aab7c81
+- https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/fa796ddc3ab7d758aac381965b0862f476229f25
+- https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/32990d028f59fe6ee9bc30e5c30599a3d202608a
+- https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/e50201f6fc069cec734ed6830db6facf0531844a
+- https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/5607135f6f2d7ec039b6ffa0d8cf28452e00f8ed
+- https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/ee5c25ebdb5078c9fd9379bfbcf049574dd52a54
+- https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/65b7310df1502cf8429a2e7345a22af71f0dff15
+- https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/18ece555123721620c2c6d867ded140b8bdf3de1
+- https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/6707cff91f0d1b9178c2b3abe3719e788f5f9b91
+- https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/9a8714ae85c6f25f69382d1aca729e3dac0eb2cc
+- https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/8d63669d43aa73de2278aec883b89303c9cbe6bd
+- https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/2f9d0515773f24af624310355a22e08e79ced245
+- https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/632567d693e1ce9f317342d7edd814b8df961ab0
+- https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/dc315a9976373c1f385c7ef09f2a4c2bd6cfa3d0
+- https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/0971502335afc5bf05d5db9f12dd51e405f4ccf6
