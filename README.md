@@ -137,3 +137,7 @@ pub const API_KEY: &str = include_str!(r"../../key.txt");
 - https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/632567d693e1ce9f317342d7edd814b8df961ab0
 - https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/dc315a9976373c1f385c7ef09f2a4c2bd6cfa3d0
 - https://github.com/YoungHaKim7/tsoding_4at_simple_multi_User_Chat/commit/0971502335afc5bf05d5db9f12dd51e405f4ccf6
+
+# 다음 연습 영상 
+- Forbidden Rust | Tsoding Daily
+  - https://youtu.be/LQ2rX5B0DUA?si=jmjBhwfgP6TH9fY-
