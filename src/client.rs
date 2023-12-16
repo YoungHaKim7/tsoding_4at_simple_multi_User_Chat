@@ -1,4 +1,5 @@
 use std::{
+    env,
     io::{stdout, ErrorKind, Read, Write},
     str, thread,
     time::Duration,
@@ -36,6 +37,10 @@ fn chat_window(stdout: &mut impl Write, chat: &[String], boundary: Rect) {
 }
 
 fn main() {
+    // let mut args = env::args();
+    // let program = args.next().expect("program name");
+    // let ip = args.next().expect("provide ip mf");
+
     let mut stream = TcpStream::connect("127.0.0.1:6969").unwrap();
     let _ = stream.set_nonblocking(true).unwrap();
 
@@ -65,6 +70,9 @@ fn main() {
                             prompt.push(x)
                         }
                     }
+                    KeyCode::Esc => {
+                        prompt.clear();
+                    }
                     KeyCode::Enter => {
                         stream.write(prompt.as_bytes()).unwrap();
                         chat.push(prompt.clone());
@@ -77,7 +85,13 @@ fn main() {
         }
 
         match stream.read(&mut buf) {
-            Ok(n) => chat.push(str::from_utf8(&buf[0..n]).unwrap().to_string()),
+            Ok(n) => {
+                if n > 0 {
+                    chat.push(str::from_utf8(&buf[0..n]).unwrap().to_string());
+                } else {
+                    quit = true;
+                }
+            }
             Err(err) => {
                 if err.kind() != ErrorKind::WouldBlock {
                     panic!("{err}");
