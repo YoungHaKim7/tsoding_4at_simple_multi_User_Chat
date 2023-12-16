@@ -1,7 +1,8 @@
 use std::{
-    env,
+    // env,
     io::{stdout, ErrorKind, Read, Write},
-    str, thread,
+    str,
+    thread,
     time::Duration,
 };
 
